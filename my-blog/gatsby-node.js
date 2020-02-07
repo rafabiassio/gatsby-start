@@ -40,6 +40,22 @@ exports.createPages = ({ graphql, actions }) => {
             }
             timeToRead
           }
+          next {
+            frontmatter {
+              title
+            }
+            fields {
+              slug
+            }
+          }
+          previous {
+            frontmatter {
+              title
+            }
+            fields {
+              slug
+            }
+          }
         }
       }
     }          
@@ -48,13 +64,15 @@ exports.createPages = ({ graphql, actions }) => {
         const posts = result.data.allMarkdownRemark.edges
 
         for(let i = 0; i < posts.length; i++) {
-            const { node } = posts[i]
+            const { node, previous, next } = posts[i]
 
             createPage({
                 path: node.fields.slug,
                 component: path.resolve('./src/templates/blog-post.js'),
                 context: {
-                    slug: node.fields.slug
+                    slug: node.fields.slug,
+                    previousPost: next,
+                    nextPost: previous,
                 }
             })
         }

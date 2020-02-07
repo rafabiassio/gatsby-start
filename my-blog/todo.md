@@ -1,3 +1,3 @@
 # to remember previous status
 
-> Finished in: S08 E02
+> Finished in: S08 E07
