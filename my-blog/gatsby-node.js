@@ -93,5 +93,11 @@ exports.createPages = ({ graphql, actions }) => {
             }
           })
         }
+
+        createPage({
+          path: '/search',
+          component: path.resolve('./src/pages/search.js')
+        })
+
     })
 }
