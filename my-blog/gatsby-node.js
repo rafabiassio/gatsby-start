@@ -63,41 +63,55 @@ exports.createPages = ({ graphql, actions }) => {
     .then(result => {
         const posts = result.data.allMarkdownRemark.edges
 
-        for(let i = 0; i < posts.length; i++) {
-            const { node, previous, next } = posts[i]
-
-            createPage({
-                path: node.fields.slug,
-                component: path.resolve('./src/templates/blog-post.js'),
-                context: {
-                    slug: node.fields.slug,
-                    previousPost: next,
-                    nextPost: previous,
-                }
-            })
-        }
-
-        const postsPerPage = 6
-        const numPages = Math.ceil(posts.length / postsPerPage)
-        const pages = Array.from({ length: numPages })
-
-        for(let index = 0; index < pages.length; index++){
-          createPage({
-            path: index === 0 ? '/' : `/page/${index + 1}`,
-            component: path.resolve('./src/templates/blog-list.js'),
-            context: {
-                limit: postsPerPage,
-                skip: (index * postsPerPage),
-                numPages,
-                currentPage: (index + 1)
-            }
-          })
-        }
-
-        createPage({
-          path: '/search',
-          component: path.resolve('./src/pages/search.js')
-        })
+      Promise.all([
+        blogPost({ posts, createPage }),
+        blogList({ posts, createPage })
+      ])
+      .then(result => result.forEach(msg => console.info(msg)))
 
     })
+}
+
+const blogPost = ({ posts, createPage}) => {
+  return new Promise((resolve, reject) => {
+    for(let i = 0; i < posts.length; i++) {
+      const { node, previous, next } = posts[i]
+
+      createPage({
+          path: node.fields.slug,
+          component: path.resolve('./src/templates/blog-post.js'),
+          context: {
+              slug: node.fields.slug,
+              previousPost: next,
+              nextPost: previous,
+          }
+      })
+    }
+
+    resolve('Blog post created')
+  })
+}
+
+const blogList = ({ posts, createPage}) => {
+  return new Promise((resolve, reject) => {
+
+      const postsPerPage = 6
+      const numPages = Math.ceil(posts.length / postsPerPage)
+      const pages = Array.from({ length: numPages })
+
+      for(let index = 0; index < pages.length; index++){
+        createPage({
+          path: index === 0 ? '/' : `/page/${index + 1}`,
+          component: path.resolve('./src/templates/blog-list.js'),
+          context: {
+              limit: postsPerPage,
+              skip: (index * postsPerPage),
+              numPages,
+              currentPage: (index + 1)
+          }
+        })
+      }
+
+    resolve('Blog list created')
+  })
 }
