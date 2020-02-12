@@ -1,11 +1,15 @@
-import React, { memo, useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import PostItem from "../PostItem"
+
+import { Clear } from 'styled-icons/material/Clear'
+import * as S from './styled'
 
 const Search = ({ props }) => {
     const posts = props.data.allMarkdownRemark.edges
     const [postList, setPostList] = useState([])
     const [filter, setFilter] = useState('')
     const [filteredPosts, setFilteredPosts] = useState([])
+    const refInput = useRef(null)
 
     useEffect(() => {
         setPostList(
@@ -51,20 +55,43 @@ const Search = ({ props }) => {
         )
     }
 
+    const statsString = () => {
+        const number = `${filteredPosts.length === 0 ? 'Nenhum' : filteredPosts.length}`
+        const plural = filteredPosts.length > 1 ? 's' : ''
+        return `${number} resultado${plural} encontrado${plural}`
+    }
+
     return (
-        <>
-             <input onChange={(event) => {
-                const { target: { value }} = event
-                return setFilter(value || '')
-            }} />
+        <S.SearchWrapper>
+            <S.SearchBox>
+                <S.SearchInput>
+                    <input 
+                        placeholder="Pesquisar..."
+                        autoFocus
+                        onChange={event => setFilter(event.target.value || '')}
+                        value={filter}
+                        ref={refInput}
+                    />
+                    {filter &&
+                    <span 
+                        onClick={() => {
+                            refInput.current.focus()
+                            setFilter('')
+                        }}
+                    >
+                        <Clear />
+                    </span>
+                    }
+                </S.SearchInput>
+            <S.Stats>{statsString()}</S.Stats>
+            </S.SearchBox>
+             
             {posts
                 .filter(({
                     node: { 
                         fields: { slug }
                     }
-                }) => {
-                    return filteredPosts.some(filtered => filtered === slug)
-                })
+                }) => filteredPosts.some(filtered => filtered === slug))
                 .map(({ 
                     node: {
                         fields: { slug },
@@ -83,8 +110,8 @@ const Search = ({ props }) => {
                 description={description}
             />
             ))}
-        </>
+        </S.SearchWrapper>
     )
 }
 
-export default memo(Search)
+export default Search
