@@ -1,7 +1,7 @@
 import styled from "styled-components"
 
 export const SearchWrapper = styled.section`
-  background: #16202c;
+  background: var(--background);
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -17,25 +17,25 @@ export const SearchBox = styled.div`
     padding: 6rem 3rem 0.5rem 3rem;
 `
 export const SearchInput = styled.div`
-    color: #8899a6;
+    color: var(--texts);
     display: flex;
     padding: 0.5rem;
     width: 100%;
     & input {
-        color: #8899a6;
+        color: var(--texts);
         background: none;
         border: none;
-        border-bottom: 1px solid #38444d;
+        border-bottom: 1px solid var(--borders);
         display: flex;
         font-size: 1.6rem;
         padding: 0.5rem;
         width: 100%;
         &::placeholder {
-            color: #8899a6;
+            color: var(--texts);
         }
     }
     & span {
-        color: #8899a6;
+        color: var(--texts);
         cursor: pointer;
         height: 3.75rem;
         padding: 0.6rem 3.8rem;
@@ -47,7 +47,7 @@ export const SearchInput = styled.div`
             height: 1.8rem;
         }
         &:hover {
-            color: #1fa1f2;
+            color: var(--highlight);
         }
     }
 `
@@ -60,13 +60,13 @@ export const ClearIcon = styled.span`
   position: absolute;
   right: 84px;
   width: 3.75rem;
-  color:#38444d;
+  color:var(--borders);
   &:hover {
-    color: #1fa1f2;
+    color: var(--highlight);
   }
 `
 
 export const Stats = styled.div`
     padding: 0.5rem;
-    color: #8899a6;
+    color: var(--texts);
 `
