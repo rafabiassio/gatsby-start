@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react'
-import PostItem from "../PostItem"
 
 import { Clear } from 'styled-icons/material/Clear'
 import * as S from './styled'
+import PostList from '../PostList'
 
 const Search = ({ props }) => {
     const posts = props.data.allMarkdownRemark.edges
@@ -85,31 +85,15 @@ const Search = ({ props }) => {
                 </S.SearchInput>
                 <S.Stats>{statsString()}</S.Stats>
             </S.SearchBox>
-             
-            {posts
-                .filter(({
-                    node: { 
-                        fields: { slug }
-                    }
-                }) => filteredPosts.some(filtered => filtered === slug))
-                .map(({ 
-                    node: {
-                        fields: { slug },
-                        frontmatter: { background, category, date, description, title },
-                        timeToRead
-                    }
-                }, key) => (
-            <PostItem 
-                key={key}
-                slug={slug}
-                background={background}
-                category={category}
-                date={date}
-                timeToRead={timeToRead}
-                title={title}
-                description={description}
+            <PostList 
+                posts={posts
+                        .filter(({
+                            node: { 
+                                fields: { slug }
+                            }
+                        }) => filteredPosts.some(filtered => filtered === slug))
+                } 
             />
-            ))}
         </S.SearchWrapper>
     )
 }
