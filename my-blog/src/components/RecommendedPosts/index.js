@@ -6,12 +6,12 @@ import * as S from './styled'
 const RecommendedPosts = ({ previous, next }) => (
     <S.RecommendedWrapper>
         {previous && (
-            <S.RecommendedLink to={previous.fields.slug} className="previous">
+            <S.RecommendedLink cover direction="up" to={previous.fields.slug} className="previous">
                 {previous.frontmatter.title}
             </S.RecommendedLink>
         )}
         {next && (
-            <S.RecommendedLink to={next.fields.slug} className="next">
+            <S.RecommendedLink cover direction="up" to={next.fields.slug} className="next">
                 {next.frontmatter.title}
             </S.RecommendedLink>
         )}
