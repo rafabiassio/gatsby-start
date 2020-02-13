@@ -3,6 +3,7 @@ module.exports = {
     title: `My Blog`,
     description: 'A blog for init with GatsbyJS (FTW!)',
     author: `@myblog`,
+    siteUrl: `https://biassioblog.com.br`
   },
   plugins: [
     `gatsby-plugin-transition-link`,
@@ -56,17 +57,18 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `gatsby-starter-default`,
-        short_name: `starter`,
+        name: `Biassio blog`,
+        short_name: `Biassio blog`,
         start_url: `/`,
-        background_color: `#663399`,
-        theme_color: `#663399`,
+        background_color: `#16202c`,
+        theme_color: `#16202c`,
         display: `minimal-ui`,
-        icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+        icon: `src/images/astronaut.png`, // This path is relative to the root of the site.
       },
     },
+    `gatsby-plugin-sitemap`,
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
-    // `gatsby-plugin-offline`,
+    `gatsby-plugin-offline`,
   ],
 }

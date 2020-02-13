@@ -48,8 +48,13 @@ export const SearchInput = styled.div`
         height: 3.75rem;
         padding: 0.6rem 3.8rem;
         position: absolute;
-        right: 84px;
+        right: 5.5rem;
         width: 3.75rem;
+
+        ${media.lessThan("large")`
+            right: 0;
+        `}
+
         & svg {
             width: 1.8rem;
             height: 1.8rem;
