@@ -1,4 +1,5 @@
 import styled from "styled-components"
+import media from 'styled-media-query'
 
 export const SearchWrapper = styled.section`
   background: var(--background);
@@ -6,6 +7,10 @@ export const SearchWrapper = styled.section`
   flex-direction: column;
   width: 100%;
   transition: opacity 0.4s;
+
+    ${media.lessThan("large")`
+        padding-bottom: 3.5rem;
+    `}
 `
 
 export const SearchBox = styled.div`
@@ -13,8 +18,11 @@ export const SearchBox = styled.div`
     flex-direction: column;
     height: auto;
     width: 100%;
-
     padding: 6rem 3rem 0.5rem 3rem;
+
+    ${media.lessThan("large")`
+        padding: 1rem 1.0rem;
+    `}
 `
 export const SearchInput = styled.div`
     color: var(--texts);

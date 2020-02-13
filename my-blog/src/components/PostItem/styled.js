@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import media from 'styled-media-query'
 import { Link } from "gatsby"
 
 export const PostItemLink = styled(Link)`
@@ -22,6 +23,12 @@ export const PostItemWrapper = styled.section`
   padding: 2rem 3rem;
   width: 100%;
 
+  ${media.lessThan("large")`
+    padding: 1.2rem 0;
+    flex-direction: column;
+    align-items: flex-start;
+  `}
+
   body#grid & {
     border: none;
     padding: 2rem 1rem;
@@ -42,6 +49,16 @@ export const PostItemTag = styled.div`
   min-height: 90px;
   min-width: 90px;
   text-transform: uppercase;
+
+  ${media.lessThan("large")`
+    border-radius: 0;
+    font-size: 0.9rem;
+    height: 25px;
+    width: 60px;
+    min-width: unset;
+    min-height: unset;
+    margin: 0 0 0.8rem 1.5rem;
+  `}
 
   body#grid & {
     margin-bottom: 1.5rem;

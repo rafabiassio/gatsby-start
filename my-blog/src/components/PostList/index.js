@@ -11,8 +11,9 @@ const PostList = ({ posts }) => (
             frontmatter: { background, category, date, description, title },
             timeToRead
         }
-        }) => (
+        }, index) => (
         <PostItem 
+            key={index}
             slug={slug}
             background={background}
             category={category}

@@ -65,8 +65,7 @@ exports.createPages = ({ graphql, actions }) => {
 
       Promise.all([
         blogPost({ posts, createPage }),
-        blogList({ posts, createPage }),
-        search({ createPage })
+        blogList({ posts, createPage })
       ])
       .then(result => result.forEach(msg => console.info(msg)))
 
@@ -114,15 +113,5 @@ const blogList = ({ posts, createPage}) => {
       }
 
     resolve('Blog list created')
-  })
-}
-
-const search = ({ createPage }) => {
-  return new Promise((resolve, reject) => {
-    createPage({
-      path: '/search',
-      component: path.resolve('./src/pages/search.js')
-    })
-    resolve('Search created')
   })
 }

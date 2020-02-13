@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 
 import { Home } from 'styled-icons/boxicons-solid/Home'
 import { Search } from 'styled-icons/boxicons-regular/Search'
-import { LightBulb as Light } from 'styled-icons/octicons/LightBulb'
+import { Lightbulb as Light } from 'styled-icons/remix-fill/Lightbulb'
 import { Grid } from 'styled-icons/boxicons-solid/Grid'
 import { ListUl as List } from 'styled-icons/boxicons-regular/ListUl'
 import { ArrowToTop as Arrow } from 'styled-icons/boxicons-solid/ArrowToTop'
