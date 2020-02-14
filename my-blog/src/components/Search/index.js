@@ -6,52 +6,34 @@ import PostList from '../PostList'
 
 const Search = ({ props }) => {
     const posts = props.data.allMarkdownRemark.edges
-    const [postList, setPostList] = useState([])
-    const [filter, setFilter] = useState('')
     const [filteredPosts, setFilteredPosts] = useState([])
     const refInput = useRef(null)
 
     useEffect(() => {
-        setPostList(
+        setFilteredPosts(
             posts
-                .map(({
-                    node: {
-                        fields: { slug: id },
-                        frontmatter
-                    } 
-                }) => ({
-                    id,
-                    values: Object.values(frontmatter)
-                }))
+                .map(({ node: { fields: { slug:id } } }) => id)
         )
     }, [])
 
-    useEffect(() => {
-        if (postList.length > 0){
-            if(filter){
-                filterPosts()
-            } else {
-                setFilteredPosts(postList.map(item => item.id))
-            }
-        } else {
-            setFilteredPosts([])
+    const filterPosts = inputValue => {
+        if(!(inputValue && inputValue.trim())){
+            return
         }
-    }, [postList, filter])
 
-    const filterPosts = () => {
-        if(!(filter && filter.trim() && postList.length > 0)){
-            return setFilteredPosts([...postList])
-        }
         setFilteredPosts(
-            postList 
-                .filter(post => {
-                    return post.values
+            posts 
+                .filter(({
+                    node: { frontmatter } 
+                }) => {
+                    const values = Object.values(frontmatter) || []
+                    return values
                         .some(child => {
-                            const filterValue = String(filter).trim().toLowerCase()
+                            const filterValue = String(inputValue).trim().toLowerCase()
                             return child.trim().toLowerCase().includes(filterValue)
                         })
                 })
-                .map(item => item.id)
+                .map(({ node: { fields: { slug:id } } }) => id)
         )
     }
 
@@ -68,15 +50,16 @@ const Search = ({ props }) => {
                     <input 
                         placeholder="Pesquisar..."
                         autoFocus
-                        onChange={event => setFilter(event.target.value || '')}
-                        value={filter}
+                        onChange={event => filterPosts(event.target.value || '')}
                         ref={refInput}
                     />
-                    {filter &&
+                    {refInput && 
+                    refInput.current && 
+                    refInput.current.value &&
                     <span 
                         onClick={() => {
+                            refInput.current.value = ''
                             refInput.current.focus()
-                            setFilter('')
                         }}
                     >
                         <Clear />

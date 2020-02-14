@@ -26,4 +26,4 @@ const PostList = ({ posts }) => (
     </S.ListWrapper>
 )
 
-export default React.memo(PostList)
+export default PostList
