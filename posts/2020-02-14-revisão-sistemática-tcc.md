@@ -1,5 +1,5 @@
 ---
-title: Revisão Sistemática - TCC
+title: Revisão $istemática
 description: Adeus TCC <3
 date: '2020-February-14 03:38:39'
 thumbnail: assets/img/taerrado.jpeg
