@@ -17,7 +17,7 @@ collections:
     fields: # The fields for each document, usually in front matter
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Description", name: "description", widget: "string"}
-      - {label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD hh:mm:ss"}
+      - {label: "Date", name: "date", widget: "datetime", dateFormat: "YYYY-MM-DD", timeFormat: "hh:mm:ss", default: ""}
       - {label: "image", name: "thumbnail", widget: "image"}
       - {label: "Category", name: "category", widget: "select", options: ["js", "drops", "dev", "misc", "linux"]}
       - {
