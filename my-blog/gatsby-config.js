@@ -1,9 +1,9 @@
 module.exports = {
   siteMetadata: {
-    title: `My Blog`,
+    title: `Biassio's blog`,
     description: 'A blog for init with GatsbyJS (FTW!)',
-    author: `@myblog`,
-    siteUrl: `https://biassioblog.com.br`
+    author: `@rafaelbiassio`,
+    siteUrl: `https://biassio.netlify.com/`
   },
   plugins: [
     `gatsby-plugin-transition-link`,
