@@ -3,8 +3,8 @@ title: Revisão Sistemática
 description: Adeus TCC <3
 date: '2020-February-14 02:14:10'
 thumbnail: assets/img/taerrado.jpeg
-category: dev
-background: '#637a91'
+category: drops
+background: '#7AAB13'
 ---
 # Revisão Sistemática
 
